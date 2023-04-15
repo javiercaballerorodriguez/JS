@@ -2,7 +2,7 @@ function cargarPersona() {
     const persona = JSON.parse(localStorage.getItem("Persona"));
     const div = document.getElementById("persona");
     const h1 = document.createElement("h1");
-    h1.innerHTML = persona.nombre;
+    h1.innerHTML = "nombre: " + persona.nombre;
     const h2 = document.createElement("h2");
     h2.innerHTML = persona.fechaNacimiento;
     const h3 = document.createElement("h3");
