@@ -26,14 +26,15 @@ function guardarPersona(event) {
 function mostrarPersonas() {
     const personas = JSON.parse(localStorage.getItem("Personas"));
     const fila = document.getElementById("filasPersona");
-    //const img =
     for (var i = 0; i < personas.length; i++) {
         const td = document.createElement("td");
         const a = document.createElement("a");
+        const img = document.createElement("img");
+        img.src = personas[i].img;
         a.onclick = guardarPersona;
         a.href = "Persona.html";
         a.innerHTML = personas[i].nombre;
-        // td.appendChild(img);
+        td.appendChild(img);
         td.appendChild(a);
         fila.appendChild(td);
     }
@@ -46,7 +47,7 @@ function cargarDatos() {
     var users = JSON.stringify(usersArray);
     localStorage.setItem("Usuarios", users);
     var personas = [];
-    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "");
+    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "TimBerner.jpg");
     personas.push(persona);
     var personasJSON = JSON.stringify(personas);
     localStorage.setItem("Personas", personasJSON);
