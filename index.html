@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="indexStyle.css">
+    <script src="./Index.js"> </script>
+    <title>index</title>
+</head>
+<body>
+    <script>
+        window.onload=cargarDatos;
+    </script>
+    <header><h1>Anales de la ciencia</h1></header>
+    <nav>
+        <form>
+            <label for="campoUsuario">Usuario: </label>
+            <input id="campoUsuario" type="text" name="campoUsuario"/> 
+            <label for="campoContrasenia">Contraseña: </label>
+            <input id="campoContrasenia" type="password" name="campoContrasenia"/> 
+            <button type="button" onclick="logearse()"> Login </button>
+        </form>
+    </nav>
+    <main>
+        <table>
+            <tr id="filasPersona"> 
+            </tr>
+            <tr id="filasProducto">
+            </tr>
+            <tr id="filasEntidad">
+                <td>
+                    <img width="50" src = "HTML.png">
+                    <a href="html.html">HTML</a>
+                </td>
+                <td>
+                    <img src = "Interrogacion.png">
+                    <a>W3C</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src = "Interrogacion.png">
+                    <a>HTTP</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src = "Interrogacion.png">
+                    <a>CSS</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src = "Interrogacion.png">
+                    <a>JavaScript</a>
+                </td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>
