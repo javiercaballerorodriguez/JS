@@ -9,6 +9,19 @@ class Persona {
 }
 
 
+class Entidad {
+    constructor(nombre, fechaInvencion, fechaTerminacion, wiki, img, personas)
+    {
+        this.nombre = nombre;
+        this.fechaInvencion = fechaInvencion;
+        this.fechaTerminacion = fechaTerminacion;
+        this.wiki = wiki;
+        this.img = img;
+        this.personas = [personas];
+    }
+}
+
+
 class Producto {
     constructor(nombre, fechaCreacion, fechaFinalizacion, wiki, img, personas, entidades) {
         this.nombre = nombre;
@@ -21,6 +34,8 @@ class Producto {
     }
 }
 
+
+//FUNCIONES PERSONA
 function guardarPersona(event) {
     const personas = JSON.parse(localStorage.getItem("Personas"));
     const nombre = event.target.innerHTML;
@@ -52,8 +67,45 @@ function mostrarPersonas() {
     }
 }
 
+//FUNCIONES ENTIDAD
+function guardarEntidad(event)
+{
+    const entidades = JSON.parse(localStorage.getItem("Entidades"));
+    const nombre = event.target.innerHTML;
+    for(var i=0; i<entidades.length; i++)
+    {
+        if(entidades[i].nombre===nombre)
+        {
+            var entidadesJSON = JSON.stringify(entidades[i]);
+            localStorage.setItem("Entidad", entidadesJSON);
+            return ;
+        }
+    }
+
+}
 
 
+function mostrarEntidades()
+{
+    const entidades = JSON.parse(localStorage.getItem("Entidades"));
+    const fila = document.getElementById("filasEntidad");
+    for(var i=0; i<entidades.length; i++)
+    {
+        const td = document.createElement("td");
+        const a = document.createElement("a");
+        const img = document.createElement("img");
+        img.src = entidades[i].img;
+        a.onclick = guardarEntidad;
+        a.href = "Entidad.html";
+        a.innerHTML= entidades[i].nombre;
+        td.appendChild(img);
+        td.appendChild(a);
+        fila.appendChild(td);
+    }
+}
+
+
+//FUNCIONES PRODUCTO
 function guardarProducto(event) {
     const productos = JSON.parse(localStorage.getItem("Productos"));
     const nombre = event.target.innerHTML;
@@ -85,19 +137,25 @@ function mostrarProductos() {
     }
 }
 
-
+//CARGAR TODOS LOS DATOS EN LA BD
 function cargarDatos() {
     var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
     var users = JSON.stringify(usersArray);
     localStorage.setItem("Usuarios", users);
     var personas = [];
-    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "TimBerner.jpg");
+    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
     personas.push(persona);
     var personasJSON = JSON.stringify(personas);
     localStorage.setItem("Personas", personasJSON);
     mostrarPersonas();
+    var entidades=[];
+    var entidad = new Entidad("Bruno Marquez", "2005", "mañana", "https://es.wikipedia.org/wiki/HTML", "Imagenes/Interrogacion.png", personas.nombre);
+    entidades.push(entidad);
+    var entidadJSON = JSON.stringify(entidades);
+    localStorage.setItem("Entidades",entidadJSON);
+    mostrarEntidades();
     var productos = [];
-    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "HTML.png", "si", "no");
+    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personas.nombre, entidades.nombre);
     productos.push(producto);
     var productosJSON = JSON.stringify(productos);
     localStorage.setItem("Productos", productosJSON);
@@ -105,10 +163,7 @@ function cargarDatos() {
 }
 
 
-
-
-
-
+//LOGEARSE EN LA PAGINA
 function logearse() {
     const fieldUser = document.getElementById("campoUsuario").value;
     const fieldPassword = document.getElementById("campoContrasenia").value;
