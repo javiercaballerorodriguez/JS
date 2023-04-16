@@ -9,6 +9,19 @@ class Persona {
 }
 
 
+class Producto{
+    constructor(nombre, fechaCreacion, fechaFinalizacion, wiki, img, personas, entidades)
+    {
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaFinalizacion = fechaFinalizacion;
+        this.wiki = wiki;
+        this.img = img;
+        this.personas = [personas];
+        this.entidades = [entidades];
+    }
+}
+
 function guardarPersona(event) {
     const personas = JSON.parse(localStorage.getItem("Personas"));
     const nombre = event.target.innerHTML;
@@ -19,8 +32,8 @@ function guardarPersona(event) {
             return;
         }
     }
-
 }
+
 
 
 function mostrarPersonas() {
@@ -42,6 +55,43 @@ function mostrarPersonas() {
 
 
 
+function guardarProducto(event)
+{
+    const productos= JSON.parse(localStorage.getItem("Productos"));
+    const nombre = event.target.innerHTML;
+    for(var i=0; i<productos.length; i++)
+    {
+        if(productos[i].nombre===nombre)
+        {
+            var productoJSON = JSON.stringify(productos[i]);
+            localStorage.setItem("Producto", productoJSON);
+            return ;
+        }
+    }
+}
+
+
+
+function mostrarProductos()
+{
+    const productos = JSON.parse(localStorage.getItem("Productos"));
+    const fila = document.getElementById("filasProducto");
+    for (var i=0; i<productos.length; i++)
+    {
+        const td= document.getElementById("td");
+        const a = document.getElementById("a");
+        const img = document.getElementById("img");
+        img.src= productos[i].img;
+        a.onclick = guardarProducto;
+        a.href="Producto.html";
+        a.innerHTML = productos[i].nombre;
+        td.appendChild(img);
+        td.appendChild(a);
+        fila.appendChild(td);
+    }
+}
+
+
 function cargarDatos() {
     var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
     var users = JSON.stringify(usersArray);
@@ -52,7 +102,17 @@ function cargarDatos() {
     var personasJSON = JSON.stringify(personas);
     localStorage.setItem("Personas", personasJSON);
     mostrarPersonas();
+    var productos = [];
+    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "HTML.jpg", "si", "no");
+    productos.push(producto);
+    var productosJSON= JSON.stringify(productos);
+    localStorage.setItem("Productos", productosJSON);
+    mostrarProductos();
 }
+
+
+
+
 
 
 function logearse() {
