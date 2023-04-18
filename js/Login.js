@@ -198,7 +198,52 @@ function cargarDatos() {
 
 function deleteItem(td)
 {
-    td.parentElement.removeChild(td);
+    console.log(td.children[1].textContent);
+    var idFila= td.parentElement.id;
+    switch(idFila)
+    {
+        case "filasPersonaLogin":
+            var personas = JSON.parse(localStorage.getItem("Personas"));
+            for(var i=0; i<personas.length; i++)
+            {
+                if(personas[i].nombre===td.children[1].textContent)
+                {
+                    personas.splice(i, 1);
+                    td.parentElement.removeChild(td);
+                }
+            }
+            var personasJSON = JSON.stringify(personas);
+            localStorage.setItem("Personas",personasJSON);
+            break;
+        case "filasProductoLogin":
+            var productos = JSON.parse(localStorage.getItem("Productos"));
+            for(var i=0; i<productos.length; i++)
+            {
+                if(productos[i].nombre===td.children[1].textContent)
+                {
+                    productos.splice(i, 1);
+                    td.parentElement.removeChild(td);
+                }
+            }
+            var productosJSON = JSON.stringify(productos);
+            localStorage.setItem("Productos",productosJSON);
+            break;
+        case "filasEntidadLogin":
+            var entidades = JSON.parse(localStorage.getItem("Entidades"));
+            for(var i=0; i<entidades.length; i++)
+            {
+                if(entidades[i].nombre===td.children[1].textContent)
+                {
+                    entidades.splice(i, 1);
+                    td.parentElement.removeChild(td);
+                }
+            }
+            var entidadesJSON = JSON.stringify(entidades);
+            localStorage.setItem("Entidades",entidadesJSON);
+            break;
+        default:
+            return ;
+    }
 }
 
 
