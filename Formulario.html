@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/formularioStyle.css">
+    <script src="js./Login.js"></script>
     <title>Formulario</title>
 </head>
 <body>
@@ -34,13 +35,13 @@
         />
         <br/>
         <label for="imagen">Imagen: </label>
-        <input id="imagen" type="url" required/>
+        <input id="img" type="url" required/>
         <br/>
         <label for="wiki">Wiki: </label>
         <input id="wiki" type="url" required/>
         <br/>
         <br/>
-        <input id="crear" type="submit" value="Crear"/>
+        <input id="crear" type="submit" value="Crear" onclick="createItem()"/>
         <br/>
       </form>
     </body>

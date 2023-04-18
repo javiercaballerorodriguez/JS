@@ -17,7 +17,7 @@ class Entidad {
         this.fechaTerminacion = fechaTerminacion;
         this.wiki = wiki;
         this.img = img;
-        this.personas = [personas];
+        this.personas = personas;
     }
 }
 
@@ -29,8 +29,8 @@ class Producto {
         this.fechaFinalizacion = fechaFinalizacion;
         this.wiki = wiki;
         this.img = img;
-        this.personas = [personas];
-        this.entidades = [entidades];
+        this.personas = personas;
+        this.entidades = entidades;
     }
 }
 
@@ -81,7 +81,6 @@ function guardarEntidad(event)
             return ;
         }
     }
-
 }
 
 
@@ -137,6 +136,8 @@ function mostrarProductos() {
     }
 }
 
+
+
 //CARGAR TODOS LOS DATOS EN LA BD
 function cargarDatos() {
     var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
@@ -149,13 +150,19 @@ function cargarDatos() {
     localStorage.setItem("Personas", personasJSON);
     mostrarPersonas();
     var entidades=[];
-    var entidad = new Entidad("Bruno Marquez", "2005", "mañana", "https://es.wikipedia.org/wiki/HTML", "Imagenes/Interrogacion.png", personas.nombre);
+    var personasEntidades=[];
+    personasEntidades.push(persona.nombre);
+    var entidad = new Entidad("HTML", "2005", "mañana", "https://es.wikipedia.org/wiki/HTML", "Imagenes/Interrogacion.png", personasEntidades);
     entidades.push(entidad);
     var entidadJSON = JSON.stringify(entidades);
     localStorage.setItem("Entidades",entidadJSON);
     mostrarEntidades();
     var productos = [];
-    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personas.nombre, entidades.nombre);
+    var personasProductos = [];
+    personasProductos.push(persona.nombre);
+    var entidadesProductos =[];
+    entidadesProductos.push(entidad.nombre);
+    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personasProductos, entidadesProductos);
     productos.push(producto);
     var productosJSON = JSON.stringify(productos);
     localStorage.setItem("Productos", productosJSON);

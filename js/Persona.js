@@ -2,6 +2,8 @@ function cargarPersona() {
     const persona = JSON.parse(localStorage.getItem("Persona"));
     const div = document.getElementById("persona");
     const h1 = document.createElement("h1");
+    const entidades = JSON.parse(localStorage.getItem("Entidades"));
+    const productos = JSON.parse(localStorage.getItem("Productos"));
     h1.innerHTML = "nombre: " + persona.nombre;
     const h2 = document.createElement("h2");
     h2.innerHTML = persona.fechaNacimiento;
@@ -17,4 +19,28 @@ function cargarPersona() {
     div.appendChild(h3);
     div.appendChild(a);
     div.appendChild(img);
+    for(var i=0; i<entidades.length; i++)
+    {
+        if(entidades[i].personas.includes(persona.nombre))
+        {
+            const ul = document.createElement("ul");
+            ul.innerText = "Entidades de las que forma parte: ";
+            const li = document.createElement("li");
+            li.innerText = entidades[i].nombre;
+            ul.appendChild(li);
+            div.appendChild(ul);
+        }
+    }
+    for(var i=0; i<productos.length; i++)
+    {
+        if(productos[i].personas.includes(persona.nombre))
+        {
+            const ul = document.createElement("ul");
+            ul.innerText = "Productos que ha creado: ";
+            const li = document.createElement("li");
+            li.innerText = productos[i].nombre;
+            ul.appendChild(li);
+            div.appendChild(ul);
+        }
+    }
 }
