@@ -136,7 +136,7 @@ function mostrarProductos() {
     }
 }
 
-function inicializarItems()
+function itemsIniciales()
 {
     var personas = [];
     var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
@@ -171,7 +171,7 @@ function cargarDatos() {
     var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
     var users = JSON.stringify(usersArray);
     localStorage.setItem("Usuarios", users);
-    inicializarItems();
+    itemsIniciales();
     }
     mostrarPersonas();
     mostrarEntidades();
