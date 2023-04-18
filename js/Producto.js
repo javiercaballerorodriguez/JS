@@ -10,6 +10,7 @@ function cargarProducto()
     h3.innerHTML = producto.fechaFinalizacion;
     const a = document.createElement("a");
     a.href=producto.wiki;
+    a.innerHTML = producto.wiki;
     const img = document.createElement("img");
     img.src = producto.img;
    

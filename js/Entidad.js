@@ -10,6 +10,7 @@ function cargarEntidad()
     h3.innerHTML = entidad.fechaTerminacion;
     const a = document.createElement("a");
     a.href = entidad.wiki;
+    a.innerHTML = entidad.wiki;
     const img = document.createElement("img");
     img.src = entidad.img;
     div.appendChild(h1);
