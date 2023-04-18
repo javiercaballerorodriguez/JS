@@ -12,17 +12,19 @@ function cargarEntidad()
     a.href = entidad.wiki;
     const img = document.createElement("img");
     img.src = entidad.img;
-    const ul = document.createElement("ul");
-    ul.innerText = "Personas relacionadas: ";
-    entidad.personas.forEach(persona => {
-      const li = document.createElement("li");
-      li.innerText = persona;
-      ul.appendChild(li);
-    });
     div.appendChild(h1);
     div.appendChild(h2);
     div.appendChild(h3);
     div.appendChild(a);
     div.appendChild(img);
-    div.appendChild(ul);
+    if(entidad.personas!=null){
+      const ul = document.createElement("ul");
+      ul.innerText = "Personas relacionadas: ";
+      entidad.personas.forEach(persona => {
+        const li = document.createElement("li");
+        li.innerText = persona;
+        ul.appendChild(li);
+        div.appendChild(ul);
+      });
+   }
 }

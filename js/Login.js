@@ -78,6 +78,7 @@ function mostrarPersonas() {
         const a = document.createElement("a");
         const img = document.createElement("img");
         img.src = personas[i].img;
+        a.onclick = guardarPersona;
         a.href = "Persona.html";
         a.innerHTML = personas[i].nombre;
         td.appendChild(img);
@@ -332,7 +333,7 @@ function createItem()
                                         document.getElementById("wiki").value,
                                         document.getElementById("img").value);
             var entidades = JSON.parse(localStorage.getItem("Entidades"));
-            entidades.push(entidades);
+            entidades.push(entidad);
             var entidadesJSON = JSON.stringify(entidades);
             localStorage.setItem("Entidades",entidadesJSON);
             break;

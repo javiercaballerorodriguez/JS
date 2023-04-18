@@ -21,26 +21,30 @@ function cargarPersona() {
     div.appendChild(img);
     for(var i=0; i<entidades.length; i++)
     {
-        if(entidades[i].personas.includes(persona.nombre))
-        {
-            const ul = document.createElement("ul");
-            ul.innerText = "Entidades de las que forma parte: ";
-            const li = document.createElement("li");
-            li.innerText = entidades[i].nombre;
-            ul.appendChild(li);
-            div.appendChild(ul);
+        if(entidades[i].personas!=null){
+            if(entidades[i].personas.includes(persona.nombre))
+            {
+                const ul = document.createElement("ul");
+                ul.innerText = "Entidades de las que forma parte: ";
+                const li = document.createElement("li");
+                li.innerText = entidades[i].nombre;
+                ul.appendChild(li);
+                div.appendChild(ul);
+            }
         }
     }
     for(var i=0; i<productos.length; i++)
     {
-        if(productos[i].personas.includes(persona.nombre))
-        {
-            const ul = document.createElement("ul");
-            ul.innerText = "Productos que ha creado: ";
-            const li = document.createElement("li");
-            li.innerText = productos[i].nombre;
-            ul.appendChild(li);
-            div.appendChild(ul);
+        if(productos[i].personas!=null){
+            if(productos[i].personas.includes(persona.nombre))
+            {
+                const ul = document.createElement("ul");
+                ul.innerText = "Productos que ha creado: ";
+                const li = document.createElement("li");
+                li.innerText = productos[i].nombre;
+                ul.appendChild(li);
+                div.appendChild(ul);
+            }
         }
     }
 }

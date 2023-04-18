@@ -12,25 +12,30 @@ function cargarProducto()
     a.href=producto.wiki;
     const img = document.createElement("img");
     img.src = producto.img;
-    const ul = document.createElement("ul");
-    ul.innerText = "Personas relacionadas: ";
-    producto.personas.forEach(persona => {
-      const li = document.createElement("li");
-      li.innerText = persona;
-      ul.appendChild(li);
-    });
-    const ulEntidad = document.createElement("ul");
-    ulEntidad.innerText = "Entidades relacionadas: ";
-    producto.entidades.forEach(entidad => {
-      const liEntidad = document.createElement("li");
-      liEntidad.innerText = entidad;
-      ulEntidad.appendChild(liEntidad);
-    });
+   
     div.appendChild(h1);
     div.appendChild(h2);
     div.appendChild(h3);
     div.appendChild(a);
     div.appendChild(img);
-    div.appendChild(ul);
-    div.appendChild(ulEntidad);
+    if(producto.personas!=null){
+      const ul = document.createElement("ul");
+      ul.innerText = "Personas relacionadas: ";
+      producto.personas.forEach(persona => {
+        const li = document.createElement("li");
+        li.innerText = persona;
+        ul.appendChild(li);
+        div.appendChild(ul);
+      });
+    }
+    if(producto.entidades!=null){
+      const ulEntidad = document.createElement("ul");
+      ulEntidad.innerText = "Entidades relacionadas: ";
+      producto.entidades.forEach(entidad => {
+        const liEntidad = document.createElement("li");
+        liEntidad.innerText = entidad;
+        ulEntidad.appendChild(liEntidad);
+        div.appendChild(ulEntidad);
+      });
+    }
 }
