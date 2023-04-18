@@ -136,19 +136,13 @@ function mostrarProductos() {
     }
 }
 
-
-
-//CARGAR TODOS LOS DATOS EN LA BD
-function cargarDatos() {
-    var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
-    var users = JSON.stringify(usersArray);
-    localStorage.setItem("Usuarios", users);
+function inicializarItems()
+{
     var personas = [];
     var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
     personas.push(persona);
     var personasJSON = JSON.stringify(personas);
     localStorage.setItem("Personas", personasJSON);
-    mostrarPersonas();
     var entidades=[];
     var personasEntidades=[];
     personasEntidades.push(persona.nombre);
@@ -156,7 +150,6 @@ function cargarDatos() {
     entidades.push(entidad);
     var entidadJSON = JSON.stringify(entidades);
     localStorage.setItem("Entidades",entidadJSON);
-    mostrarEntidades();
     var productos = [];
     var personasProductos = [];
     personasProductos.push(persona.nombre);
@@ -166,17 +159,38 @@ function cargarDatos() {
     productos.push(producto);
     var productosJSON = JSON.stringify(productos);
     localStorage.setItem("Productos", productosJSON);
+}
+
+
+//CARGAR TODOS LOS DATOS EN LA BD
+function cargarDatos() {
+    var CargaDeDatos= JSON.parse(localStorage.getItem("CargaDeDatos"));
+    console.log(CargaDeDatos);
+    if(CargaDeDatos!=1)
+    {
+    var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
+    var users = JSON.stringify(usersArray);
+    localStorage.setItem("Usuarios", users);
+    inicializarItems();
+    }
+    mostrarPersonas();
+    mostrarEntidades();
     mostrarProductos();
 }
 
 
+
 //LOGEARSE EN LA PAGINA
 function logearse() {
+    var CargarDatos=0;
+    localStorage.setItem("CargaDeDatos", CargarDatos);
     const fieldUser = document.getElementById("campoUsuario").value;
     const fieldPassword = document.getElementById("campoContrasenia").value;
     const usuariosBD = JSON.parse(localStorage.getItem("Usuarios"));
     for (var i = 0; i < usuariosBD.length; i++) {
         if (usuariosBD[i].user === fieldUser && usuariosBD[i].password === fieldPassword) {
+            CargarDatos= 1;
+            localStorage.setItem("CargaDeDatos", CargarDatos);
             window.alert("Usuario válido, bienvenido!");
             window.location.href = 'Login.html';
             return;
@@ -184,4 +198,5 @@ function logearse() {
     }
     window.alert("Usuario no válido, intentelo de nuevo");
 }
+
 
