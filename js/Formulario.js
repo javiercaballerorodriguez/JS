@@ -1,8 +1,8 @@
 function createItem(fila)
 {
-    location.href="./Formulario.html";
+
     window.alert(fila.id)
-    const variable = fila.id;
+    let variable = fila.id;
     switch(variable)
     {
         case "filasPersonaLogin":
@@ -15,14 +15,30 @@ function createItem(fila)
             personas.push(persona);
             var personasJSON = JSON.stringify(personas);
             localStorage.setItem("Personas",personasJSON);
-
-        /*case "filasProductoLogin":
-    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
-    personas.push(persona);
-    var personasJSON = JSON.stringify(personas);
-    localStorage.setItem("Personas", personasJSON);
+            break;
+        case "filasProductoLogin":
+            var producto = new Producto(document.getElementById("nombre").value,
+                                        document.getElementById("fechaNac").value,
+                                        document.getElementById("fechaDef").value,
+                                        document.getElementById("wiki").value,
+                                        document.getElementById("img").value);
+            var productos = JSON.parse(localStorage.getItem("Productos"));
+            productos.push(producto);
+            var productosJSON = JSON.stringify(productos);
+            localStorage.setItem("Productos",productosJSON);
+            break;
         case "filasEntidadLogin":
-
-        default*/
+            var entidad = new Entidad(document.getElementById("nombre").value,
+                                        document.getElementById("fechaNac").value,
+                                        document.getElementById("fechaDef").value,
+                                        document.getElementById("wiki").value,
+                                        document.getElementById("img").value);
+            var entidades = JSON.parse(localStorage.getItem("Entidades"));
+            entidades.push(entidades);
+            var entidadesJSON = JSON.stringify(entidades);
+            localStorage.setItem("Entidades",entidadesJSON);
+            break;
+        default:
+            return ;
     }
 }

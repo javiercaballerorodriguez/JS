@@ -40,18 +40,18 @@ function crearCreateButton(fila)
     const input = document.createElement("input");
     input.setAttribute("type", "button");
     input.setAttribute("value", "create");
-    input.addEventListener("click", () => { createItem(fila); });
+    input.addEventListener("click", () => { irAFormulario(fila); });
     tdButton.appendChild(input);
     fila.appendChild(tdButton);
 }
 
-function crearDeleteButton(fila)
+function crearDeleteButton(td)
 {
     const input = document.createElement("input");
     input.setAttribute("type", "button");
     input.setAttribute("value", "delete");
-    input.setAttribute("onclick", "deleteItem()");
-    fila.appendChild(input);
+    input.addEventListener("click", () => { deleteItem(td); });
+    td.appendChild(input);
 }
 
 
@@ -196,21 +196,23 @@ function cargarDatos() {
     mostrarProductos();
 }
 
-function deleteItem()
+function deleteItem(td)
 {
-
+    td.parentElement.removeChild(td);
 }
 
-function irAFormulario()
+
+
+function irAFormulario(fila)
 {
     location.href="./Formulario.html";
+    localStorage.setItem("idFil", fila.id)
 }
 
-function createItem(fila)
+function createItem()
 {
-    location.href="./Formulario.html";
-    window.alert(fila.id)
-    const variable = fila.id;
+    var variable = localStorage.getItem("idFil");
+    console.log(variable);
     switch(variable)
     {
         case "filasPersonaLogin":
@@ -223,14 +225,30 @@ function createItem(fila)
             personas.push(persona);
             var personasJSON = JSON.stringify(personas);
             localStorage.setItem("Personas",personasJSON);
-
-        /*case "filasProductoLogin":
-    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
-    personas.push(persona);
-    var personasJSON = JSON.stringify(personas);
-    localStorage.setItem("Personas", personasJSON);
+            break;
+        case "filasProductoLogin":
+            var producto = new Producto(document.getElementById("nombre").value,
+                                        document.getElementById("fechaNac").value,
+                                        document.getElementById("fechaDef").value,
+                                        document.getElementById("wiki").value,
+                                        document.getElementById("img").value);
+            var productos = JSON.parse(localStorage.getItem("Productos"));
+            productos.push(producto);
+            var productosJSON = JSON.stringify(productos);
+            localStorage.setItem("Productos",productosJSON);
+            break;
         case "filasEntidadLogin":
-
-        default*/
+            var entidad = new Entidad(document.getElementById("nombre").value,
+                                        document.getElementById("fechaNac").value,
+                                        document.getElementById("fechaDef").value,
+                                        document.getElementById("wiki").value,
+                                        document.getElementById("img").value);
+            var entidades = JSON.parse(localStorage.getItem("Entidades"));
+            entidades.push(entidades);
+            var entidadesJSON = JSON.stringify(entidades);
+            localStorage.setItem("Entidades",entidadesJSON);
+            break;
+        default:
+            return ;
     }
 }
