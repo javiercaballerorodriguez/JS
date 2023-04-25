@@ -13,7 +13,6 @@ function cargarProducto()
     a.innerHTML = producto.wiki;
     const img = document.createElement("img");
     img.src = producto.img;
-   
     div.appendChild(h1);
     div.appendChild(h2);
     div.appendChild(h3);

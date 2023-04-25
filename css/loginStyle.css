@@ -16,11 +16,6 @@ nav{
     margin-left: 10%;
 }
 
-#logout{
-    float: right;
-    margin-right: 11%;
-}
-
 h1{
     text-align: center;
 }
@@ -33,9 +28,13 @@ table{
     font-weight:bolder;
 }
 
-footer{
-    margin-top: 50px;
-    margin-left: 15%;
+h2{
+    margin-top: 25%;
+}
+
+td {
+    padding: 8px;
+    text-align: left;
 }
 
 img{

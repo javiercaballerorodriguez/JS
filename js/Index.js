@@ -139,15 +139,21 @@ function mostrarProductos() {
 function itemsIniciales()
 {
     var personas = [];
-    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
+    var persona = new Persona("Vannervar Bush", "2001", "hoy", "https://es.wikipedia.org/wiki/Vannevar_Bush", "Imagenes/vannevarbush.jpg");
+    var persona2 = new Persona("Tim Berners Lee", "8 de junio de 1955", " ", "https://es.wikipedia.org/wiki/Tim_Berners-Lee", "Imagenes/TimBerner.jpg");
     personas.push(persona);
+    personas.push(persona2);
     var personasJSON = JSON.stringify(personas);
     localStorage.setItem("Personas", personasJSON);
     var entidades=[];
     var personasEntidades=[];
     personasEntidades.push(persona.nombre);
-    var entidad = new Entidad("HTML", "2005", "mañana", "https://es.wikipedia.org/wiki/HTML", "Imagenes/Interrogacion.png", personasEntidades);
+    var entidad = new Entidad("IBM", "16 de Junio de 1911", " ", "https://es.wikipedia.org/wiki/IBM", "Imagenes/IBM.png", personasEntidades);
+    var entidad2 = new Entidad("CERN", "29 de Septiembre de 1954", " ", "https://es.wikipedia.org/wiki/Organizaci%C3%B3n_Europea_para_la_Investigaci%C3%B3n_Nuclear", "Imagenes/CERN.png", personasEntidades);
+    var entidad3 = new Entidad("W3C", "1 de Octubre de 1994", " ", "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium#:~:text=El%20W3C%20fue%20creado%20el,actual%20sede%20central%20del%20consorcio.", "Imagenes/W3C.png", personasEntidades);
     entidades.push(entidad);
+    entidades.push(entidad2);
+    entidades.push(entidad3);
     var entidadJSON = JSON.stringify(entidades);
     localStorage.setItem("Entidades",entidadJSON);
     var productos = [];
@@ -155,8 +161,18 @@ function itemsIniciales()
     personasProductos.push(persona.nombre);
     var entidadesProductos =[];
     entidadesProductos.push(entidad.nombre);
-    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personasProductos, entidadesProductos);
+    var producto = new Producto("SGML", "1986", " ", "https://es.wikipedia.org/wiki/SGML", "Imagenes/SGML.jpg", personasProductos, entidadesProductos);
+    var producto2 = new Producto("XML", "1999", " ", "https://es.wikipedia.org/wiki/Extensible_Markup_Language", "Imagenes/XML.jpg", personasProductos, entidadesProductos);
+    var producto3 = new Producto("HTML", "1993", " ", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personasProductos, entidadesProductos);
+    var producto4 = new Producto("HTTP", "1991", " ", "https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto", "Imagenes/HTTP.jpg", personasProductos, entidadesProductos);
+    var producto5 = new Producto("CSS", "1996", " ", "https://es.wikipedia.org/wiki/CSS", "Imagenes/CSS.png", personasProductos, entidadesProductos);
+    var producto6 = new Producto("JavaScript", "1995", " ", "https://es.wikipedia.org/wiki/JavaScript", "Imagenes/JS.png", personasProductos, entidadesProductos);
     productos.push(producto);
+    productos.push(producto2);
+    productos.push(producto3);
+    productos.push(producto4);
+    productos.push(producto5);
+    productos.push(producto6);
     var productosJSON = JSON.stringify(productos);
     localStorage.setItem("Productos", productosJSON);
 }
