@@ -148,6 +148,7 @@ function itemsIniciales()
     var entidades=[];
     var personasEntidades=[];
     personasEntidades.push(persona.nombre);
+    personasEntidades.push(persona2.nombre);
     var entidad = new Entidad("IBM", "16 de Junio de 1911", " ", "https://es.wikipedia.org/wiki/IBM", "Imagenes/IBM.png", personasEntidades);
     var entidad2 = new Entidad("CERN", "29 de Septiembre de 1954", " ", "https://es.wikipedia.org/wiki/Organizaci%C3%B3n_Europea_para_la_Investigaci%C3%B3n_Nuclear", "Imagenes/CERN.png", personasEntidades);
     var entidad3 = new Entidad("W3C", "1 de Octubre de 1994", " ", "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium#:~:text=El%20W3C%20fue%20creado%20el,actual%20sede%20central%20del%20consorcio.", "Imagenes/W3C.png", personasEntidades);
@@ -159,8 +160,11 @@ function itemsIniciales()
     var productos = [];
     var personasProductos = [];
     personasProductos.push(persona.nombre);
+    personasProductos.push(persona2.nombre);
     var entidadesProductos =[];
     entidadesProductos.push(entidad.nombre);
+    entidadesProductos.push(entidad2.nombre);
+    entidadesProductos.push(entidad3.nombre);
     var producto = new Producto("SGML", "1986", " ", "https://es.wikipedia.org/wiki/SGML", "Imagenes/SGML.jpg", personasProductos, entidadesProductos);
     var producto2 = new Producto("XML", "1999", " ", "https://es.wikipedia.org/wiki/Extensible_Markup_Language", "Imagenes/XML.jpg", personasProductos, entidadesProductos);
     var producto3 = new Producto("HTML", "1993", " ", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personasProductos, entidadesProductos);
@@ -198,6 +202,8 @@ function cargarDatos() {
 
 //LOGEARSE EN LA PAGINA
 function logearse() {
+    var userLogin=false;
+    localStorage.setItem("usuarioLogeado", userLogin);
     var CargarDatos=0;
     localStorage.setItem("CargaDeDatos", CargarDatos);
     const fieldUser = document.getElementById("campoUsuario").value;
@@ -206,6 +212,8 @@ function logearse() {
     for (var i = 0; i < usuariosBD.length; i++) {
         if (usuariosBD[i].user === fieldUser && usuariosBD[i].password === fieldPassword) {
             CargarDatos= 1;
+            userLogin=true;
+            localStorage.setItem("usuarioLogeado", userLogin);
             localStorage.setItem("CargaDeDatos", CargarDatos);
             window.alert("Usuario válido, bienvenido!");
             window.location.href = 'Login.html';

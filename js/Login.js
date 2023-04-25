@@ -45,6 +45,7 @@ function crearCreateButton(fila)
     fila.appendChild(tdButton);
 }
 
+
 function crearDeleteButton(td)
 {
     const input = document.createElement("input");
@@ -209,7 +210,7 @@ function cargarDatos() {
     mostrarProductos();
 }
 
-
+//FUNCION PARA BORRAR ELEMENTOS
 function deleteItem(td)
 {
     console.log(td.children[1].textContent);
@@ -261,7 +262,7 @@ function deleteItem(td)
 }
 
 
-
+//FUNCION QUE LLEVA AL FORMULARIO Y TE CREA EL ELEMENTO
 function irAFormulario(fila)
 {
     location.href="./Formulario.html";
@@ -312,4 +313,12 @@ function createItem()
             return ;
     }
     }
+}
+
+//FUNCION QUE SE USA PARA CONTROLAR CUANDO EL USUARIO ESTA LOGEADO O NO PARA ASI MOSTRAR LA FUNCION "MODIFICAR"
+function deslogearse()
+{
+    var userLogin=localStorage.getItem("usuarioLogeado");
+    userLogin=false;
+    localStorage.setItem("usuarioLogeado", userLogin);
 }

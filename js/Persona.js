@@ -1,4 +1,5 @@
 function cargarPersona() {
+    var userLogin = localStorage.getItem("usuarioLogeado");
     const persona = JSON.parse(localStorage.getItem("Persona"));
     const div = document.getElementById("persona");
     const aside = document.getElementById("asidePersona");
@@ -47,4 +48,17 @@ function cargarPersona() {
             }
         }
     }
+    if(userLogin==="true"){    
+    const input = document.createElement("input");
+    input.setAttribute("type", "button");
+    input.setAttribute("value", "modify");
+    input.addEventListener("click",() => { irAFormulario(); });
+    div.appendChild(input);
+    }  
+}
+
+
+function irAFormulario()
+{
+    location.href="./Formulario.html";
 }
