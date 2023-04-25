@@ -139,7 +139,7 @@ function mostrarProductos() {
 function itemsIniciales()
 {
     var personas = [];
-    var persona = new Persona("Vannervar Bush", "2001", "hoy", "https://es.wikipedia.org/wiki/Vannevar_Bush", "Imagenes/vannevarbush.jpg");
+    var persona = new Persona("Vannervar Bush", "11 de Marzo de 1890", "28 de Junio de 1974", "https://es.wikipedia.org/wiki/Vannevar_Bush", "Imagenes/vannevarbush.jpg");
     var persona2 = new Persona("Tim Berners Lee", "8 de junio de 1955", " ", "https://es.wikipedia.org/wiki/Tim_Berners-Lee", "Imagenes/TimBerner.jpg");
     personas.push(persona);
     personas.push(persona2);
