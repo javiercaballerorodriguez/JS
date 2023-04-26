@@ -214,6 +214,7 @@ function cargarDatos() {
 function deleteItem(td)
 {
     console.log(td.children[1].textContent);
+    var nombre = td.children[1].textContent;
     var idFila= td.parentElement.id;
     switch(idFila)
     {
@@ -227,10 +228,38 @@ function deleteItem(td)
                     td.parentElement.removeChild(td);
                 }
             }
+            //LA SIGUIENTE PARTE SIRVE PARA QUITAR LA PERSONA DE LA LISTA DE ENTIDADES
+            var entidades = JSON.parse(localStorage.getItem("Entidades"));
+            for(var i=0; i<entidades.length; i++)
+            {
+                for(var j=0; j<entidades[i].personas.length; j++)
+               { 
+                if(entidades[i].personas[j]===nombre)
+                {
+                    entidades[i].personas.splice(j, 1);
+                }
+            }
+            }
+            //LA SIGUIENTE PARTE SIRVE PARA QUITAR LA PERSONA DE LA LISTA DE PRODUCTOS
+            var productos = JSON.parse(localStorage.getItem("Productos"));
+            for(var i=0; i<productos.length; i++)
+            {
+                for(var j=0; j<productos[i].personas.length; j++)
+               { 
+                if(productos[i].personas[j]===nombre)
+                {
+                    productos[i].personas.splice(j, 1);
+                }
+            }
+            }
             var personasJSON = JSON.stringify(personas);
             localStorage.setItem("Personas",personasJSON);
+            var entidadesJSON = JSON.stringify(entidades);
+            localStorage.setItem("Entidades",entidadesJSON);
+            var productosJSON = JSON.stringify(productos);
+            localStorage.setItem("Productos",productosJSON);
             break;
-        case "filasProductoLogin":
+        case "filasProductoLogin":                      //En el caso de que queramos eliminar un producto:
             var productos = JSON.parse(localStorage.getItem("Productos"));
             for(var i=0; i<productos.length; i++)
             {
@@ -243,7 +272,7 @@ function deleteItem(td)
             var productosJSON = JSON.stringify(productos);
             localStorage.setItem("Productos",productosJSON);
             break;
-        case "filasEntidadLogin":
+        case "filasEntidadLogin":                       //En el caso de que queramos eliminar una entidad:
             var entidades = JSON.parse(localStorage.getItem("Entidades"));
             for(var i=0; i<entidades.length; i++)
             {
@@ -253,8 +282,22 @@ function deleteItem(td)
                     td.parentElement.removeChild(td);
                 }
             }
+            //LA SIGUIENTE PARTE SIRVE PARA QUITAR LA ENTIDAD DE LA LISTA DE PRODUCTOS
+            var productos = JSON.parse(localStorage.getItem("Productos"));
+            for(var i=0; i<productos.length; i++)
+            {
+                for(var j=0; j<productos[i].entidades.length; j++)
+               { 
+                if(productos[i].entidades[j]===nombre)
+                {
+                    productos[i].entidades.splice(j, 1);
+                }
+            }
+            }
             var entidadesJSON = JSON.stringify(entidades);
             localStorage.setItem("Entidades",entidadesJSON);
+            var productosJSON = JSON.stringify(productos);
+            localStorage.setItem("Productos",productosJSON);
             break;
         default:
             return ;
