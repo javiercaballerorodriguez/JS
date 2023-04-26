@@ -168,43 +168,9 @@ function mostrarProductos() {
 
 
 //CARGAR TODOS LOS DATOS EN LA BD
-function itemsIniciales()
-{
-    var personas = [];
-    var persona = new Persona("Ricardo", "2001", "hoy", "https://es.wikipedia.org/wiki/HTML", "Imagenes/TimBerner.jpg");
-    personas.push(persona);
-    var personasJSON = JSON.stringify(personas);
-    localStorage.setItem("Personas", personasJSON);
-    var entidades=[];
-    var personasEntidades=[];
-    personasEntidades.push(persona.nombre);
-    var entidad = new Entidad("HTML", "2005", "mañana", "https://es.wikipedia.org/wiki/HTML", "Imagenes/Interrogacion.png", personasEntidades);
-    entidades.push(entidad);
-    var entidadJSON = JSON.stringify(entidades);
-    localStorage.setItem("Entidades",entidadJSON);
-    var productos = [];
-    var personasProductos = [];
-    personasProductos.push(persona.nombre);
-    var entidadesProductos =[];
-    entidadesProductos.push(entidad.nombre);
-    var producto = new Producto("Champú", "2003", "ayer", "https://es.wikipedia.org/wiki/HTML", "Imagenes/HTML.png", personasProductos, entidadesProductos);
-    productos.push(producto);
-    var productosJSON = JSON.stringify(productos);
-    localStorage.setItem("Productos", productosJSON);
-}
-
-
-//CARGAR TODOS LOS DATOS EN LA BD
 function cargarDatos() {
     var CargaDeDatos= JSON.parse(localStorage.getItem("CargaDeDatos"));
     console.log(CargaDeDatos);
-    if(CargaDeDatos!=1)
-    {
-    var usersArray = [{ user: "x", password: "x" }, { user: "y", password: "y" }, { user: "z", password: "z" }];
-    var users = JSON.stringify(usersArray);
-    localStorage.setItem("Usuarios", users);
-    itemsIniciales();
-    }
     mostrarPersonas();
     mostrarEntidades();
     mostrarProductos();
@@ -331,22 +297,29 @@ function createItem()
             localStorage.setItem("Personas",personasJSON);
             break;
         case "filasProductoLogin":
+
+            var listaPersonas = checkValues(document.getElementsByName("ListaPersonas"));
+            var listaEntidades = checkValues(document.getElementsByName("ListaEntidades"));
             var producto = new Producto(document.getElementById("nombre").value,
                                         document.getElementById("fechaNac").value,
                                         document.getElementById("fechaDef").value,
                                         document.getElementById("wiki").value,
-                                        document.getElementById("img").value);
+                                        document.getElementById("img").value,
+                                        listaPersonas, listaEntidades
+                                        );
             var productos = JSON.parse(localStorage.getItem("Productos"));
             productos.push(producto);
             var productosJSON = JSON.stringify(productos);
             localStorage.setItem("Productos",productosJSON);
             break;
         case "filasEntidadLogin":
+            var listaPersonas = checkValues(document.getElementsByName("ListaPersonas"));
             var entidad = new Entidad(document.getElementById("nombre").value,
                                         document.getElementById("fechaNac").value,
                                         document.getElementById("fechaDef").value,
                                         document.getElementById("wiki").value,
-                                        document.getElementById("img").value);
+                                        document.getElementById("img").value,
+                                        listaPersonas);
             var entidades = JSON.parse(localStorage.getItem("Entidades"));
             entidades.push(entidad);
             var entidadesJSON = JSON.stringify(entidades);
@@ -358,10 +331,76 @@ function createItem()
     }
 }
 
+
+function checkValues(array)
+{
+    var arrayReturn=[];
+    for(var i=0;i<array.length; i++)
+    {
+        if(array[i].checked)
+        {
+            arrayReturn.push(array[i].value);
+        }
+    }
+    return arrayReturn;
+}
+
+
 //FUNCION QUE SE USA PARA CONTROLAR CUANDO EL USUARIO ESTA LOGEADO O NO PARA ASI MOSTRAR LA FUNCION "MODIFICAR"
 function deslogearse()
 {
     var userLogin=localStorage.getItem("usuarioLogeado");
     userLogin=false;
     localStorage.setItem("usuarioLogeado", userLogin);
+}
+
+
+
+function cargarFormulario()
+{
+    var idFil = localStorage.getItem("idFil");
+    var personasArray = JSON.parse(localStorage.getItem("Personas"));
+    var entidadesArray = JSON.parse(localStorage.getItem("Entidades"));
+    switch(idFil)
+    {
+        case "filasProductoLogin":
+            checkBox(personasArray,"Personas involucradas", "ListaPersonas");
+            checkBox(entidadesArray,"Entidades involucradas", "ListaEntidades");
+            break;
+        case "filasEntidadLogin":
+            checkBox(personasArray,"Personas involucradas", "ListaPersonas");
+    }
+    
+
+
+}
+
+function checkBox(array, texto, name)
+{
+    const label = document.createElement("label");
+    label.appendChild(document.createTextNode(texto));
+    var form = document.getElementById("form");
+    var br = document.createElement("br");
+    label.appendChild(br);
+    form.insertBefore(label, document.getElementById("crear"));
+    for(var i=0; i<array.length; i++)
+    {
+        const input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("name", name);
+        input.setAttribute("id", array[i].nombre);
+        input.setAttribute("value", array[i].nombre);
+        form.insertBefore(input, document.getElementById("crear"));
+        const labelNombre = document.createElement("label");
+        labelNombre.setAttribute("for", array[i].nombre);
+        labelNombre.appendChild(document.createTextNode(array[i].nombre));
+        var br = document.createElement("br");
+        var br2 = document.createElement("br");
+        labelNombre.appendChild(br);
+        if(i===array.length-1)
+        {
+            labelNombre.appendChild(br2);
+        }
+        form.insertBefore(labelNombre, document.getElementById("crear"));
+    }
 }

@@ -39,11 +39,18 @@ function cargarProducto()
         div.appendChild(ulEntidad);
       });
     }
-    if(userLogin==="true"){    
+    if(userLogin==="true"){
+    var idModificacion = "Producto";
+    localStorage.setItem("idModificacion", idModificacion);     
     const input = document.createElement("input");
     input.setAttribute("type", "button");
     input.setAttribute("value", "modify");
-    input.addEventListener("click",() => { irAFormulario(); });
+    input.addEventListener("click",() => { irAModificar(); });
     div.appendChild(input);
-    }  
+    } 
+    
+function irAModificar()
+{
+    location.href="./Modificacion.html";
+} 
 }

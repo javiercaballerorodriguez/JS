@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/formularioStyle.css">
-    <script src="js./LoginYFormulario.js"></script>
-    <title>Formulario</title>
+    <script src="js/Modificacion.js"> </script>
+    <title>PaginaDeModificacion</title>
 </head>
-<body onload="cargarFormulario()">
-    <header><h1>FORMULARIO</h1></header>
+<body>
+    <header><h1>Modifica los datos que desees</h1></header>
     <form id="form" action="Login.html">
         <label for="nombre">Nombre: </label>
-        <input id="nombre" type="text" name="Nombre" required/>
+        <input id="nombre" type="text" name="Nombre"/>
         <br/>
         <label for="FechaNac">Fecha de nacimiento:</label>
         <input
@@ -21,7 +20,6 @@
           min="1900-1-1"
           max="2020-1-1"
           name="fechaNac"
-          required
         />
         <br/>
         <label for="FechaDef">Fecha de defuncion:</label>
@@ -34,14 +32,14 @@
         />
         <br/>
         <label for="imagen">Imagen: </label>
-        <input id="img" type="url" required/>
+        <input id="img" type="url"/>
         <br/>
         <label for="wiki">Wiki: </label>
-        <input id="wiki" type="url" required/>
+        <input id="wiki" type="url"/>
         <br/>
         <br/>
-        <input id="crear" type="submit" value="Crear" onclick="createItem()"/>
+        <input type="submit" value="Modificar Valores" onclick="modificar()"/>
         <br/>
       </form>
-    </body>
+</body>
 </html>
