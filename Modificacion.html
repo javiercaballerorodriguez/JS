@@ -7,7 +7,7 @@
     <script src="js/Modificacion.js"> </script>
     <title>PaginaDeModificacion</title>
 </head>
-<body>
+<body onload="cargarModificacion()">
     <header><h1>Modifica los datos que desees</h1></header>
     <form id="form" action="Login.html">
         <label for="nombre">Nombre: </label>
@@ -38,7 +38,7 @@
         <input id="wiki" type="url"/>
         <br/>
         <br/>
-        <input type="submit" value="Modificar Valores" onclick="modificar()"/>
+        <input id="modificacion" type="submit" value="Modificar Valores" onclick="modificar()"/>
         <br/>
       </form>
 </body>

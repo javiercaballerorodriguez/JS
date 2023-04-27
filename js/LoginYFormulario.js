@@ -332,19 +332,6 @@ function createItem()
 }
 
 
-function checkValues(array)
-{
-    var arrayReturn=[];
-    for(var i=0;i<array.length; i++)
-    {
-        if(array[i].checked)
-        {
-            arrayReturn.push(array[i].value);
-        }
-    }
-    return arrayReturn;
-}
-
 
 //FUNCION QUE SE USA PARA CONTROLAR CUANDO EL USUARIO ESTA LOGEADO O NO PARA ASI MOSTRAR LA FUNCION "MODIFICAR"
 function deslogearse()
@@ -373,6 +360,19 @@ function cargarFormulario()
     
 
 
+}
+
+function checkValues(array)
+{
+    var arrayReturn=[];
+    for(var i=0;i<array.length; i++)
+    {
+        if(array[i].checked)
+        {
+            arrayReturn.push(array[i].value);
+        }
+    }
+    return arrayReturn;
 }
 
 function checkBox(array, texto, name)
